@@ -1,0 +1,13 @@
+﻿test.txt,单词数:6
+test.txt,单词数:6
+test.txt,单词数:6
+test.txt,单词数:9
+test.txt,单词数:9
+test.txt,单词数:6
+test.txt,单词数:6
+stop.txt,单词数:0
+test.txt,单词数:6
+test.txt,单词数:6
+test.txt,单词数:6
+test.txt,单词数:6
+test.txt,单词数:9
