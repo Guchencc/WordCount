@@ -1,5 +1,3 @@
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -164,12 +162,31 @@ public class WordCount {
         commentLinecount=0;
     }
 
-    public void readStopFile(){
-
+     public void readStopFile(){
+        String str="";
+        String[] stopwords;
+        try {
+            BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(stopFileName)));
+            while ((str = bf.readLine()) != null) {
+                stopwords = str.trim().split("\\s");
+                Collections.addAll(stoplist, stopwords);
+            }
+        }catch (Exception e){
+            System.out.println("读取停用词表错误！");
+        }
     }
 
     public void findAllFiles(String path){
+        File file=new File(path);
+        if (!file.isDirectory()){
+            String filename=file.getName();
+            if (filename.substring(filename.indexOf('.')+1,filename.length()).equals(suffix))
+                filelist.add(file.getAbsolutePath());
 
+        } else if (file.isDirectory()){
+            for (File f:file.listFiles())
+                findAllFiles(f.getAbsolutePath());
+        }
     }
 }
 
