@@ -52,9 +52,12 @@ public class WordCount {
                 optlist.add(args[--i]);
             }
             else if (args[i].equals(outFileName)||args[i].equals(stopFileName));
-            else if (optlist.contains("-s") && args[i].matches("\\*[.](txt|c)$")){
+            else if (optlist.contains("-s") && args[i].matches(".*\\*[.](txt|c|py|java|cpp)$")){
+                String root="";
                 suffix=args[i].substring(args[i].indexOf('.')+1,args[i].length());
-                String root=System.getProperty("user.dir");
+                root=args[i].replaceAll("\\*[.](txt|c|py|java|cpp)$","");
+                if (root.length()<1)
+                    root=System.getProperty("user.dir");
                 findAllFiles(root);
             }
             else if (!optlist.contains("-s"))
@@ -71,7 +74,7 @@ public class WordCount {
             filename=path.substring(path.lastIndexOf('\\')+1,path.length());
             BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(filelist.get(i))));
             while((str=br.readLine())!=null) {
-                if (str.trim().replaceAll("(//|/\\*|\\*/)","").length()>=1)
+                if (str.trim().replaceAll("(//.*|/\\*.*\\*/|/\\*.*|\\*/|\\{|\\})","").length()>1)
                     codeLinecount++;
                 if (str.trim().matches("^(//|/\\*).*") || str.trim().matches("^[!-~](//.*|/\\*.*\\*/)") || str.trim().matches("\\*/")){
                     commentLinecount++;
@@ -190,6 +193,6 @@ public class WordCount {
     }
 }
 
-//–s –a –w –c –l F:\codes\java\try\src\*.c –o output.txt
-//wc.exe -s -a –w F:\codes\java\try\src\*.c
+//-s -a -w -c -l F:\codes\java\try\src\*.c -o output.txt
+//wc.exe -s -a -w F:\codes\java\try\src\*.c
 //注释
