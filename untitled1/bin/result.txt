@@ -1,0 +1,9 @@
+test.txt,字符数:20
+Xusage.txt,字符数:1422
+jvm.hprof.txt,字符数:4225
+README.txt,字符数:45
+THIRDPARTYLICENSEREADME-JAVAFX.txt,字符数:110062
+THIRDPARTYLICENSEREADME.txt,字符数:177070
+output.txt,字符数:738
+result.txt,字符数:180
+test.txt,字符数:20
