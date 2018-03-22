@@ -1,7 +1,14 @@
-as,s
-dd
-ffasd
- //ddds
-}/
+	//noteLine
 
-  s,dasdds SD
+
+/*noteLine
+/*noteLine
+*/
+/*noteLine*/
+/*noteLine
+//noteLine
+*/codeLine
+
+}//noteLine
+for(){
+}/*noteLine*/

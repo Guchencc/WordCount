@@ -71,9 +71,9 @@ public class WordCount {
             filename=path.substring(path.lastIndexOf('\\')+1,path.length());
             BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(filelist.get(i))));
             while((str=br.readLine())!=null) {
-                if (str.length()>=1)
+                if (str.trim().replaceAll("(//|/\\*|\\*/)","").length()>=1)
                     codeLinecount++;
-                if (str.trim().matches("^//.*") || str.trim().matches("^[!-~]//.*")){
+                if (str.trim().matches("^(//|/\\*).*") || str.trim().matches("^[!-~](//.*|/\\*.*\\*/)") || str.trim().matches("\\*/")){
                     commentLinecount++;
                 }
                 if(str.matches("\\s*") || (str.trim().length()==1 && (str.trim().charAt(0)>0x21 && str.trim().charAt(0)<0x7F)))
@@ -162,7 +162,7 @@ public class WordCount {
         commentLinecount=0;
     }
 
-     public void readStopFile(){
+    public void readStopFile(){
         String str="";
         String[] stopwords;
         try {
@@ -190,3 +190,6 @@ public class WordCount {
     }
 }
 
+//–s –a –w –c –l F:\codes\java\try\src\*.c –o output.txt
+//wc.exe -s -a –w F:\codes\java\try\src\*.c
+//注释
